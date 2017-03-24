@@ -130,6 +130,19 @@ class SimLed (PyTango.Device_4Impl):
             self.gui.c.create_oval(x0,y0,x1,y1,fill="lightgray",outline="lightgray")
         #----- PROTECTED REGION END -----#	//	SimLed.Led_write
         
+
+    def is_Led_allowed(self, attr):
+        self.debug_stream("In is_Led_allowed()")
+        if attr==PyTango.AttReqType.READ_REQ:
+            state_ok = not(self.get_state() in [PyTango.DevState.OFF])
+        else:
+            state_ok = not(self.get_state() in [PyTango.DevState.OFF])
+        #----- PROTECTED REGION ID(SimLed.is_Led_allowed) ENABLED START -----#
+        
+        #----- PROTECTED REGION END -----#	//	SimLed.is_Led_allowed
+        return state_ok
+        
+
     
     
             

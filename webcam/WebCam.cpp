@@ -153,10 +153,11 @@ void WebCam::init_device()
 	Tango::DbData	dev_prop;
 	dev_prop.push_back(Tango::DbDatum("video"));
 	get_db_device()->get_property(dev_prop);
-	DEBUG_STREAM << "PROPERTY " << dev_prop[0].name << dev_prop[0].value_string[0] << endl;
+	cout << "video property " << dev_prop[0].name << dev_prop[0].value_string[0] << endl;
 
 
 	int cam = atoi(dev_prop[0].value_string[0].c_str());
+cout << "cam " << cam << endl;
 	cap=new cv::VideoCapture (cam); // open the default camera
 	if(!(cap->isOpened()))  // check if we succeeded
 	    cout << "ERROR OPENING WEBCAM"<< cam <<  endl;
